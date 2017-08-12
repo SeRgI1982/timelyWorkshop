@@ -1,0 +1,25 @@
+<Window x:Class="timely.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:timely.ViewModels"
+        xmlns:views="clr-namespace:timely.Views"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:ShellViewModel />
+    </Window.DataContext>
+    <Grid>
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="Dashboard">
+                <views:DashboardView /> 
+            </TabItem>
+            <TabItem Header="Timesheet entries">
+                <views:TimesheetView />
+            </TabItem>
+            <TabItem Header="Reports">
+                <views:ReportsView />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
