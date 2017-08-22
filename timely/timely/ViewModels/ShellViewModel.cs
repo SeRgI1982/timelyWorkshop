@@ -1,9 +1,10 @@
 using System;
 using System.ComponentModel;
+using timely.Infrastructure;
 
 namespace timely.ViewModels
 {
-    public class ShellViewModel
+    public class ShellViewModel : NotifiableObject
     {
         public ShellViewModel()
         {

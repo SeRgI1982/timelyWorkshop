@@ -1,6 +1,8 @@
-﻿namespace timely.ViewModels
+using timely.Infrastructure;
+
+namespace timely.ViewModels
 {
-    public class ReportsViewModel
+    public class ReportsViewModel : NotifiableObject
     {
     }
 }
