@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvvmDialogs, Version=4.0.10.0, Culture=neutral, PublicKeyToken=3d3b9708589bc73e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmDialogs.4.0.10\lib\net45\MvvmDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,20 +60,27 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database.cs" />
+    <Compile Include="Infrastructure\DialogServiceProvider.cs" />
     <Compile Include="Infrastructure\MyCommand.cs" />
     <Compile Include="Infrastructure\NotifiableObject.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\TimesheetEntry.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="TimelyService.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\TimesheetViewModel.cs" />
+    <Compile Include="ViewModels\TimesheetEntriesViewModel.cs" />
+    <Compile Include="ViewModels\TimesheetEntryDialogViewModel.cs" />
     <Compile Include="Views\ReportsView.xaml.cs">
       <DependentUpon>ReportsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TimesheetView.xaml.cs">
-      <DependentUpon>TimesheetView.xaml</DependentUpon>
+    <Compile Include="Views\TimesheetEntriesView.xaml.cs">
+      <DependentUpon>TimesheetEntriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimesheetEntryDialog.cs" />
+    <Compile Include="Views\TimesheetEntryView.xaml.cs">
+      <DependentUpon>TimesheetEntryView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
@@ -94,7 +105,11 @@
       <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\TimesheetView.xaml">
+    <Page Include="Views\TimesheetEntriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimesheetEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +132,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

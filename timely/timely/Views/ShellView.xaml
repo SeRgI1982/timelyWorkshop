@@ -15,7 +15,7 @@
                 <views:DashboardView /> 
             </TabItem>
             <TabItem Header="Timesheet entries">
-                <views:TimesheetView />
+                <views:TimesheetEntriesView />
             </TabItem>
             <TabItem Header="Reports">
                 <views:ReportsView />

@@ -9,13 +9,13 @@ namespace timely.ViewModels
         public ShellViewModel()
         {
             DashboardViewModel = new DashboardViewModel();
-            TimesheetViewModel = new TimesheetViewModel();
+            TimesheetEntriesViewModel = new TimesheetEntriesViewModel();
             ReportsViewModel = new ReportsViewModel();
         }
 
         public DashboardViewModel DashboardViewModel { get; }
 
-        public TimesheetViewModel TimesheetViewModel { get; }
+        public TimesheetEntriesViewModel TimesheetEntriesViewModel { get; }
 
         public ReportsViewModel ReportsViewModel { get; }
 

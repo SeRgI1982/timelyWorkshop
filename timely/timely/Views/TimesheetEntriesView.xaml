@@ -4,10 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:timely.ViewModels"
              xmlns:local="clr-namespace:timely.Views"
-             x:Class="timely.Views.TimesheetView"
+             xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+             md:DialogServiceViews.IsRegistered="True"
+             x:Class="timely.Views.TimesheetEntriesView"
              Name="theView"
              mc:Ignorable="d"
-             Background="ForestGreen"
              d:DesignHeight="768"
              d:DesignWidth="1024">
     <UserControl.Resources>
@@ -67,11 +68,23 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <vm:TimesheetViewModel />
+        <vm:TimesheetEntriesViewModel />
     </UserControl.DataContext>
 
     <Grid>
-        <DataGrid ItemsSource="{Binding TimesheetEntries}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="0"
+                Content="Add"
+                Width="75"
+                HorizontalAlignment="Left"
+                Margin="5"
+                Command="{Binding AddTimesheetEntryCommand}" />
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding TimesheetEntries}"
                   IsReadOnly="True"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -96,10 +109,8 @@
                                         SelectedValueBinding="{Binding ProjectId}">
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource"
-                                    Value="{Binding DataContext.Projects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
-                            <Setter Property="IsReadOnly"
-                                    Value="True" />
+                            <Setter Property="ItemsSource" Value="{Binding DataContext.Projects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
+                            <Setter Property="IsReadOnly" Value="True" />
                         </Style>
                     </DataGridComboBoxColumn.ElementStyle>
                 </DataGridComboBoxColumn>
