@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database.cs" />
+    <Compile Include="Infrastructure\DateConverter.cs" />
     <Compile Include="Infrastructure\DialogServiceProvider.cs" />
     <Compile Include="Infrastructure\MyCommand.cs" />
     <Compile Include="Infrastructure\NotifiableObject.cs" />

@@ -46,7 +46,7 @@ namespace timely.ViewModels
 
             if (success.GetValueOrDefault())
             {
-                
+                TimesheetEntries.Insert(0, timesheetEntryViewModel.Entry);
             }
         }
 
@@ -59,12 +59,15 @@ namespace timely.ViewModels
                 return;
             }
 
-            var timesheetEntryViewModel = new TimesheetEntryDialogViewModel { Entry = timesheetEntry };
-            bool? success = _dialogService.ShowDialog(this, timesheetEntryViewModel);
+            var toEdit = _service.GetTimesheetEntryById(timesheetEntry.Id);
+            var timesheetEntryViewModel = new TimesheetEntryDialogViewModel { Entry = toEdit };
+            var success = _dialogService.ShowDialog(this, timesheetEntryViewModel);
 
             if (success.GetValueOrDefault())
             {
-
+                var index = TimesheetEntries.IndexOf(timesheetEntry);
+                TimesheetEntries.Remove(timesheetEntry);
+                TimesheetEntries.Insert(index, timesheetEntryViewModel.Entry);
             }
         }
 
@@ -77,8 +80,13 @@ namespace timely.ViewModels
                 return;
             }
 
-            _service.DeleteTimesheetEntry(timesheetEntry.Id);
-            TimesheetEntries.Remove(timesheetEntry);
+            if (_dialogService.ShowMessageBox(this,
+                $"Do you want to delete timesheet entry: {timesheetEntry.WorkTitle} - {timesheetEntry.DateStarted} ?",
+                "Deletion of Timesheet Entry", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                _service.DeleteTimesheetEntry(timesheetEntry.Id);
+                TimesheetEntries.Remove(timesheetEntry);
+            }
         }
     }
 }

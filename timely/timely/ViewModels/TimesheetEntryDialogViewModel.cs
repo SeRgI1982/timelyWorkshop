@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MvvmDialogs;
 using timely.Infrastructure;
@@ -12,14 +13,25 @@ namespace timely.ViewModels
         private string _title;
 
         private TimesheetEntry _entry;
+        private readonly TimelyService _service;
 
         public TimesheetEntryDialogViewModel()
         {
             _title = "Timesheet entry";
+
+            _service = new TimelyService();
+
+            Users = new ObservableCollection<User>(_service.GetUsers());
+            Projects = new ObservableCollection<Project>(_service.GetProjects());
+
             OkCommand = new MyCommand(OnOk);
         }
 
         public ICommand OkCommand { get; }
+
+        public ObservableCollection<User> Users { get; }
+
+        public ObservableCollection<Project> Projects { get; }
 
         public TimesheetEntry Entry
         {
@@ -59,10 +71,16 @@ namespace timely.ViewModels
 
         private void OnOk(object parameter)
         {
-            if (true)
+            if (Entry.Id == Guid.Empty)
             {
-                DialogResult = true;
+                _service.AddTimesheetEntry(Entry);
             }
+            else
+            {
+                _service.UpdateTimesheetEntry(Entry);
+            }
+
+            DialogResult = true;
         }
     }
 }

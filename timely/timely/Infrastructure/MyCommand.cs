@@ -14,6 +14,8 @@ namespace timely.Infrastructure
             _canExecuteAction = canExecuteAction;
         }
 
+        public event EventHandler CanExecuteChanged;
+
         /// <summary>
         /// Defines the method that determines whether the command can execute in its current state.
         /// </summary>
@@ -35,7 +37,5 @@ namespace timely.Infrastructure
         {
             _executeAction?.Invoke(parameter);
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 }

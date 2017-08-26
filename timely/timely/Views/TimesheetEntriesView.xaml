@@ -94,7 +94,7 @@
                                     Header="Date"
                                     IsReadOnly="True"
                                     SortDirection="Descending"
-                                    SortMemberPath="Date" />
+                                    SortMemberPath="DateStarted.Date" />
                 <DataGridTextColumn Binding="{Binding TimeSpent, StringFormat=\{0:hh\\:mm\}}"
                                     CellStyle="{StaticResource TimeSpentCellStyle}"
                                     Header="Time spent"
