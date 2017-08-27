@@ -3,7 +3,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:timely.ViewModels"
-             xmlns:local="clr-namespace:timely.Views"
              xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
              md:DialogServiceViews.IsRegistered="True"
              x:Class="timely.Views.TimesheetEntriesView"

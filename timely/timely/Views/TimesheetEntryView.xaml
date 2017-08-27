@@ -15,6 +15,24 @@
     
     <Window.Resources>
         <infra:DateConverter x:Key="DateConverter" />
+        <infra:TimeConverter x:Key="TimeConverter" />
+
+        <ControlTemplate x:Key="ErrorTemplateStyle">
+            <StackPanel Orientation="Horizontal">
+                <AdornedElementPlaceholder x:Name="adorner"/>
+                <Ellipse Fill="Red"
+                         Margin="2"
+                         Height="10"
+                         Width="10"
+                         VerticalAlignment="Center"
+                         StrokeThickness="0"
+                         Stroke="Transparent">
+                    <Ellipse.ToolTip>
+                         <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Ellipse.ToolTip>
+                </Ellipse>
+            </StackPanel>
+        </ControlTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -27,6 +45,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="15" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -40,15 +59,18 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Title" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Entry.WorkTitle}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Entry.WorkTitle, ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateStyle}" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Time Spent" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Entry.TimeSpent}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Entry.TimeSpent, StringFormat=\{0:hh\\:mm\}, ValidatesOnNotifyDataErrors=True, Converter={StaticResource TimeConverter}}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateStyle}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Date Started" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
-            <DatePicker Grid.Row="2" Grid.Column="1" Margin="2" SelectedDate="{Binding Entry.DateStarted, Converter={StaticResource DateConverter}}" />
+            <DatePicker Grid.Row="2" Grid.Column="1" Margin="2" SelectedDate="{Binding Entry.DateStarted, Converter={StaticResource DateConverter}, ValidatesOnNotifyDataErrors=True}" 
+                        Validation.ErrorTemplate="{StaticResource ErrorTemplateStyle}"/>
 
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Project" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
@@ -57,7 +79,8 @@
                       ItemsSource="{Binding Projects}"
                       SelectedValuePath="Id"
                       DisplayMemberPath="Name"
-                      SelectedValue="{Binding Entry.ProjectId}" />
+                      SelectedValue="{Binding Entry.ProjectId}" 
+                      Validation.ErrorTemplate="{StaticResource ErrorTemplateStyle}"/>
 
             <TextBlock Grid.Row="4" Grid.Column="0" Text="User" Margin="0,0,5,0"
                        VerticalAlignment="Center" />

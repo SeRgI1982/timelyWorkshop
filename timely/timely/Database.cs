@@ -115,6 +115,8 @@ namespace timely
                         }
 
                         var entry = new TimesheetEntry();
+                        entry.SusspendValidation();
+
                         entry.Id = Guid.NewGuid();
                         entry.DateStarted = day;
                         entry.TimeSpent = timeSpent;
@@ -122,7 +124,8 @@ namespace timely
                         entry.UserId = user.Id;
                         entry.WorkTitle = $"[{project.Name}] - Task#{random.Next(1, 5)}";
                         entry.WorkDescription = $"Today is {day.DayOfWeek}";
-
+                        entry.ResumeValidation();
+                        
                         result.Add(entry);
                     }   
                 }

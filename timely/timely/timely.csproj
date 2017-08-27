@@ -40,6 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,8 +65,11 @@
     <Compile Include="Infrastructure\DialogServiceProvider.cs" />
     <Compile Include="Infrastructure\MyCommand.cs" />
     <Compile Include="Infrastructure\NotifiableObject.cs" />
+    <Compile Include="Infrastructure\TimeConverter.cs" />
+    <Compile Include="Infrastructure\ValidatableObject.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\TimesheetEntry.cs" />
+    <Compile Include="Models\TimesheetEntryTimeSpentValidator.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="TimelyService.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />

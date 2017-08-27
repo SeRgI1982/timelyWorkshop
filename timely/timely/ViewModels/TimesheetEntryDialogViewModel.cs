@@ -71,6 +71,12 @@ namespace timely.ViewModels
 
         private void OnOk(object parameter)
         {
+            Entry.Validate();
+            if (Entry.HasErrors)
+            {
+                return;
+            }
+
             if (Entry.Id == Guid.Empty)
             {
                 _service.AddTimesheetEntry(Entry);
