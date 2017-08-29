@@ -11,10 +11,14 @@
              d:DesignHeight="768"
              d:DesignWidth="1024">
     <UserControl.Resources>
-        <Style x:Key="TimeSpentCellStyle" TargetType="{x:Type DataGridCell}">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="1" />
+        <Style x:Key="TimeSpentCellStyle"
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -64,6 +68,107 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2"
+                                   SnapsToDevicePixels="true"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                   StrokeThickness="1"
+                                   StrokeDashArray="1 2" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background"
+                         Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border"
+                         Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.MouseOver.Background"
+                         Color="#FFBEE6FD" />
+        <SolidColorBrush x:Key="Button.MouseOver.Border"
+                         Color="#FF3C7FB1" />
+        <SolidColorBrush x:Key="Button.Pressed.Background"
+                         Color="#FFC4E5F6" />
+        <SolidColorBrush x:Key="Button.Pressed.Border"
+                         Color="#FF2C628B" />
+        <SolidColorBrush x:Key="Button.Disabled.Background"
+                         Color="#FFF4F4F4" />
+        <SolidColorBrush x:Key="Button.Disabled.Border"
+                         Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground"
+                         Color="#FF838383" />
+        <Style x:Key="ActionButtonStyle"
+               TargetType="{x:Type Button}">
+
+            <Setter Property="Background"
+                    Value="#FF000000" />
+            <Setter Property="Width"
+                    Value="20" />
+            <Setter Property="Height"
+                    Value="20" />
+            <Setter Property="Padding"
+                    Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Viewbox Stretch="Fill"
+                                 Width="{TemplateBinding Width}"
+                                 Height="{TemplateBinding Height}">
+                            <Border x:Name="container"
+                                    Background="Transparent">
+                                <Path Stretch="Fill"
+                                      x:Name="path"
+                                      Fill="{TemplateBinding Background}"
+                                      Data="{TemplateBinding Tag}" />
+                            </Border>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="true">
+                                <Setter Property="RenderTransform"
+                                        TargetName="container">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.05"
+                                                        ScaleY="1.05"
+                                                        CenterX="50"
+                                                        CenterY="50" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="true">
+                                <Setter Property="RenderTransform"
+                                        TargetName="container">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.95"
+                                                        ScaleY="0.95"
+                                                        CenterX="50"
+                                                        CenterY="50" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Fill"
+                                        TargetName="path"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                         AncestorType={x:Type DataGridRow}},
+                                                         Path=IsSelected}"
+                             Value="True">
+                    <Setter Property="Background"
+                            Value="#FFFFFFFF" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <UserControl.DataContext>
@@ -75,14 +180,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Button Grid.Row="0"
                 Content="Add"
                 Width="75"
                 HorizontalAlignment="Left"
                 Margin="5"
                 Command="{Binding AddTimesheetEntryCommand}" />
-        <DataGrid Grid.Row="1" 
+        <DataGrid Grid.Row="1"
                   ItemsSource="{Binding TimesheetEntries}"
                   IsReadOnly="True"
                   AutoGenerateColumns="False">
@@ -108,8 +213,10 @@
                                         SelectedValueBinding="{Binding ProjectId}">
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource" Value="{Binding DataContext.Projects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
-                            <Setter Property="IsReadOnly" Value="True" />
+                            <Setter Property="ItemsSource"
+                                    Value="{Binding DataContext.Projects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
+                            <Setter Property="IsReadOnly"
+                                    Value="True" />
                         </Style>
                     </DataGridComboBoxColumn.ElementStyle>
                 </DataGridComboBoxColumn>
@@ -133,29 +240,41 @@
                         </Style>
                     </DataGridComboBoxColumn.ElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTemplateColumn Width="75">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Edit"
+                            <Button Style="{DynamicResource ActionButtonStyle}"
                                     Margin="2"
+                                    ToolTip="Edit"
                                     Command="{Binding DataContext.EditTimesheetEntryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}" />
+                                    CommandParameter="{Binding}">
+                                <Button.Tag>
+                                    <PathGeometry>
+                                        F1 M 54.6818,20.1053L 55.8947,21.3182C 57.4019,22.8254 57.4019,25.2691 55.8947,26.7763L 53.7721,28.8989L 47.1011,22.2279L 49.2237,20.1053C 50.7309,18.5981 53.1746,18.5981 54.6818,20.1053 Z M 36.1848,46.4862L 29.5138,39.8152L 45.8881,23.4408L 52.5592,30.1119L 36.1848,46.4862 Z M 28.9073,42.241L 33.759,47.0927L 27.0251,48.9749L 28.9073,42.241 Z M 19,57L 19,25L 40.8063,25L 36.8063,29L 23,29L 23,53L 53,53L 53,32.6912L 57,28.6911L 57,57L 19,57 Z
+                                    </PathGeometry>
+                                </Button.Tag>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="75">
+                <DataGridTemplateColumn Width="27">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete"
+                            <Button Style="{DynamicResource ActionButtonStyle}"
+                                    ToolTip="Delete"
                                     Margin="2"
                                     Command="{Binding DataContext.DeleteTimesheetEntryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}" />
+                                    CommandParameter="{Binding}">
+                                <Button.Tag>
+                                    <PathGeometry>
+                                        F1 M 25.3333,23.75L 50.6667,23.75C 51.5411,23.75 51.8541,27.3125 51.8541,27.3125L 24.1458,27.3125C 24.1458,27.3125 24.4589,23.75 25.3333,23.75 Z M 35.625,19.7917L 40.375,19.7917C 40.8122,19.7917 41.9583,20.9378 41.9583,21.375C 41.9583,21.8122 40.8122,22.9584 40.375,22.9584L 35.625,22.9584C 35.1878,22.9584 34.0416,21.8122 34.0416,21.375C 34.0416,20.9378 35.1878,19.7917 35.625,19.7917 Z M 27.7083,28.5L 48.2916,28.5C 49.1661,28.5 49.875,29.2089 49.875,30.0834L 48.2916,53.8334C 48.2916,54.7078 47.5828,55.4167 46.7083,55.4167L 29.2917,55.4167C 28.4172,55.4167 27.7083,54.7078 27.7083,53.8334L 26.125,30.0834C 26.125,29.2089 26.8339,28.5 27.7083,28.5 Z M 30.0833,31.6667L 30.4792,52.25L 33.25,52.25L 32.8542,31.6667L 30.0833,31.6667 Z M 36.4167,31.6667L 36.4167,52.25L 39.5833,52.25L 39.5833,31.6667L 36.4167,31.6667 Z M 43.1458,31.6667L 42.75,52.25L 45.5208,52.25L 45.9167,31.6667L 43.1458,31.6667 Z
+                                    </PathGeometry>
+                                </Button.Tag>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
-
         </DataGrid>
     </Grid>
 </UserControl>
