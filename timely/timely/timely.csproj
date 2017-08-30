@@ -66,7 +66,6 @@
     <Compile Include="Infrastructure\MyCommand.cs" />
     <Compile Include="Infrastructure\NotifiableObject.cs" />
     <Compile Include="Infrastructure\TimeConverter.cs" />
-    <Compile Include="Infrastructure\TimesheetEntryRowStyleSelector.cs" />
     <Compile Include="Infrastructure\ValidatableObject.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\TimesheetEntry.cs" />

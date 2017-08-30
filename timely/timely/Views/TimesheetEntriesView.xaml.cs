@@ -1,5 +1,3 @@
-
-
 namespace timely.Views
 {
     /// <summary>

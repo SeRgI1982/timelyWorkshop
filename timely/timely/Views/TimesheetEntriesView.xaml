@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:timely.ViewModels"
              xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-             xmlns:infrastructure="clr-namespace:timely.Infrastructure"
              md:DialogServiceViews.IsRegistered="True"
              x:Class="timely.Views.TimesheetEntriesView"
              Name="theView"
@@ -69,9 +68,37 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2"
+                                   SnapsToDevicePixels="true"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                   StrokeThickness="1"
+                                   StrokeDashArray="1 2" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background"
+                         Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border"
+                         Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.MouseOver.Background"
+                         Color="#FFBEE6FD" />
+        <SolidColorBrush x:Key="Button.MouseOver.Border"
+                         Color="#FF3C7FB1" />
+        <SolidColorBrush x:Key="Button.Pressed.Background"
+                         Color="#FFC4E5F6" />
+        <SolidColorBrush x:Key="Button.Pressed.Border"
+                         Color="#FF2C628B" />
         <SolidColorBrush x:Key="Button.Disabled.Background"
                          Color="#FFF4F4F4" />
+        <SolidColorBrush x:Key="Button.Disabled.Border"
+                         Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground"
+                         Color="#FF838383" />
         <Style x:Key="ActionButtonStyle"
                TargetType="{x:Type Button}">
 
@@ -86,37 +113,30 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-
                         <Viewbox Stretch="Fill"
                                  Width="{TemplateBinding Width}"
                                  Height="{TemplateBinding Height}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState x:Name="Normal" />
-                                    <VisualState x:Name="MouseOver">
-                                        <Storyboard>
-                                            <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="path"
-                                                                Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)"
-                                                                To="Red"
-                                                                Duration="0:0:0.5" />
-
-                                            </Storyboard>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
                             <Border x:Name="container"
                                     Background="Transparent">
                                 <Path Stretch="Fill"
                                       x:Name="path"
                                       Fill="{TemplateBinding Background}"
-                                      Data="{TemplateBinding Tag}">
-
-                                </Path>
+                                      Data="{TemplateBinding Tag}" />
                             </Border>
                         </Viewbox>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="true">
+                                <Setter Property="RenderTransform"
+                                        TargetName="container">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.05"
+                                                        ScaleY="1.05"
+                                                        CenterX="50"
+                                                        CenterY="50" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                             <Trigger Property="IsPressed"
                                      Value="true">
                                 <Setter Property="RenderTransform"
@@ -149,31 +169,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <Style x:Key="ApolloStyle"
-               TargetType="DataGridRow"
-               BasedOn="{StaticResource {x:Type DataGridRow}}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver"
-                         Value="True">
-                    <Setter Property="Background"
-                            Value="DarkOrange" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="DefaultStyle"
-               TargetType="DataGridRow"
-               BasedOn="{StaticResource {x:Type DataGridRow}}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Green" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <infrastructure:TimesheetEntryRowStyleSelector x:Key="TimesheetEntryRowStyleSelector"
-                                                       ApolloStyle="{StaticResource ApolloStyle}"
-                                                       DefaultStyle="{StaticResource DefaultStyle}" />
     </UserControl.Resources>
 
     <UserControl.DataContext>
@@ -195,8 +190,7 @@
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding TimesheetEntries}"
                   IsReadOnly="True"
-                  AutoGenerateColumns="False"
-                  RowStyleSelector="{StaticResource TimesheetEntryRowStyleSelector}">
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DateStarted, StringFormat=\{0:dd.MM.yyyy\}}"
                                     CanUserResize="False"
