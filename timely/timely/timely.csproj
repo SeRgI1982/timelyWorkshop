@@ -63,6 +63,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="Infrastructure\DateConverter.cs" />
     <Compile Include="Infrastructure\DialogServiceProvider.cs" />
+    <Compile Include="Infrastructure\FloatingActionButton.cs" />
     <Compile Include="Infrastructure\MyCommand.cs" />
     <Compile Include="Infrastructure\NotifiableObject.cs" />
     <Compile Include="Infrastructure\TimeConverter.cs" />
@@ -88,6 +89,10 @@
     <Compile Include="Views\TimesheetEntryView.xaml.cs">
       <DependentUpon>TimesheetEntryView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

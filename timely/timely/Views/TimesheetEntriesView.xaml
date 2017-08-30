@@ -181,19 +181,7 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Button Grid.Row="0"
-                Content="Add"
-                Width="75"
-                HorizontalAlignment="Left"
-                Margin="5"
-                Command="{Binding AddTimesheetEntryCommand}" />
-        <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding TimesheetEntries}"
+        <DataGrid ItemsSource="{Binding TimesheetEntries}"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   RowStyleSelector="{StaticResource TimesheetEntryRowStyleSelector}">
@@ -282,5 +270,12 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <infrastructure:FloatingActionButton 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="#3F51B5"
+                Foreground="White"
+                Margin="0,0,100,75"
+                Command="{Binding AddTimesheetEntryCommand}" />
     </Grid>
 </UserControl>
