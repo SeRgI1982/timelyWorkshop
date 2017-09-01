@@ -30,7 +30,7 @@ Each point is described on a [Wiki](https://github.com/SeRgI1982/timelyWorkshop/
    - Templated Parts,
    - Animations (via code),
 
-5. [Different kind of presentations]((https://github.com/SeRgI1982/timelyWorkshop/wiki/Task04)) ([branch](https://github.com/SeRgI1982/timelyWorkshop/tree/Task05))
+5. [Different kind of presentations](https://github.com/SeRgI1982/timelyWorkshop/wiki/Task05) ([branch](https://github.com/SeRgI1982/timelyWorkshop/tree/Task05))
    - Implicit templates,
    - Injected components
 
