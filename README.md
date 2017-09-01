@@ -7,16 +7,16 @@ The second goal is to show how to redesign monolithical app to the much more fle
 Below, you will find agenda. <br />
 Each point is described on a [Wiki](https://github.com/SeRgI1982/timelyWorkshop/wiki) Page and have his own branch. 
 
-1. TimeLy - basis
+1. [TimeLy - basis](https://github.com/SeRgI1982/timelyWorkshop/tree/Task01)
     - List of entries,
     - Timesheet entry form
 
-2. Validation with Data Annotations
+2. [Validation with Data Annotations](https://github.com/SeRgI1982/timelyWorkshop/tree/Task02)
     - INotifyDataErrorInfo,
     - Basic Validators,
     - Custom Validators
 
-3. Data Templates and Triggers
+3. [Data Templates and Triggers](https://github.com/SeRgI1982/timelyWorkshop/tree/Task03)
     - Basic Styles,
     - Control Templates,
     - Data Templates,
@@ -25,10 +25,10 @@ Each point is described on a [Wiki](https://github.com/SeRgI1982/timelyWorkshop/
     - Animations (Visual States),
     - XAML Inspector
 
-4. Custom controls - Floating Action Button
-   - Behaviors,
-   - Attached Behaviors,
-   - Routed Events,
+4. [Custom controls - Floating Action Button](https://github.com/SeRgI1982/timelyWorkshop/tree/Task04)
+   - Dependency Properties,
+   - Templated Parts,
+   - Animations (via code),
 
 5. Different kind of presentations
    - Implicit templates,
