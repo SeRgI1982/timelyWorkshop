@@ -1,7 +1,7 @@
 # timely
 This is the WPF workshop.
 
-The main goal is to show the most popular features of WPF.
+The main goal is to show the most popular features of WPF. <br />
 The second goal is to show how to redesign monolithical app to the much more flexible solution.
 
 Below, you will find agenda. <br />
