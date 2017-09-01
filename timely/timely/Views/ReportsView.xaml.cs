@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace timely
+namespace timely.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ReportsView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ReportsView : UserControl
     {
-        public MainWindow()
+        public ReportsView()
         {
             InitializeComponent();
         }
