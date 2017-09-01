@@ -9,13 +9,21 @@
     <Window.DataContext>
         <vm:ShellViewModel />
     </Window.DataContext>
+    
+    <Window.Resources>
+        <!--Implicit DataTemplate-->
+        <DataTemplate DataType="{x:Type vm:TimesheetEntriesViewModel}">
+            <views:TimesheetEntriesView />
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <TabControl TabStripPlacement="Left">
             <TabItem Header="Dashboard">
                 <views:DashboardView /> 
             </TabItem>
             <TabItem Header="Timesheet entries">
-                <views:TimesheetEntriesView />
+                <ContentControl Content="{Binding TimesheetEntriesViewModel}" />
             </TabItem>
             <TabItem Header="Reports">
                 <views:ReportsView />

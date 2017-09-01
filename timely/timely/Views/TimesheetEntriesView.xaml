@@ -176,10 +176,6 @@
                                                        DefaultStyle="{StaticResource DefaultStyle}" />
     </UserControl.Resources>
 
-    <UserControl.DataContext>
-        <vm:TimesheetEntriesViewModel />
-    </UserControl.DataContext>
-
     <Grid>
         <DataGrid ItemsSource="{Binding TimesheetEntries}"
                   IsReadOnly="True"
