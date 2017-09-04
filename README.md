@@ -34,7 +34,7 @@ Each point is described on a [Wiki](https://github.com/SeRgI1982/timelyWorkshop/
    - Implicit templates,
    - Injected components
 
-6. Going into Prism
+6. [Going into Prism]((https://github.com/SeRgI1982/timelyWorkshop/wiki/Task06) ([branch](https://github.com/SeRgI1982/timelyWorkshop/tree/Task06))
    - Modularity,
    - Regions,
    - Communication between loosely coupled components,
